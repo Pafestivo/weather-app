@@ -24,7 +24,8 @@
         "prefer-const": "off",
         "grouped-accessor-pairs": "off",
         "no-param-reassign": "off",
-        "no-alert": "off"
+        "no-alert": "off",
+        "prefer-destructuring": "off"
     }
   }
   
