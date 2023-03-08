@@ -58,7 +58,6 @@ body {
 
 .weather {
   display: flex;
-  padding-left: 40px;
 }
 
 #weather {
