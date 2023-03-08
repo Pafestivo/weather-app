@@ -7,7 +7,7 @@ body {
 .search-box {
   display: flex;
   width: max-content;
-  margin: 40px auto;
+  margin: 40px auto 10px auto;
   column-gap: 10px;
   overflow-y: visible;
 }
@@ -32,8 +32,18 @@ body {
   cursor: pointer;
 }
 
+.error {
+  color: red;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
 .details {
-  margin: 20px auto;
+  margin: 0 auto;
   width: max-content;
   padding: 10px;
   display: grid;

@@ -3,9 +3,15 @@ export default async function getData(location, units) {
   const response = await fetch(url, {
     mode: 'cors'
   })
+  const searchError = document.getElementById('search-error')
   const data = await response.json();
-  console.log(data)
-  return processData(data, units)
+  try {
+    searchError.classList.add('hidden')
+    return processData(data, units)
+  } catch {
+    searchError.textContent = `Error: ${data.message}`
+    searchError.classList.remove('hidden')
+  }
 }
 
 function processData(data, units) {
@@ -39,10 +45,11 @@ function processData(data, units) {
   if(data.sys.country) country = data.sys.country
 
   let rain = '-'
-  if(data.snow) snow = data.snow['1h'];
+  if(data.rain) rain = data.rain['1h'];
 
   let snow = '-'
-  if(data.rain) rain = data.rain['1h'];
+  if(data.snow) snow = data.snow['1h'];
+
 
   let theme = 'dark'
   if(data.sys.sunrise < data.dt && data.dt < data.sys.sunset) theme = 'light'
