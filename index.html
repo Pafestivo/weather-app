@@ -9,43 +9,45 @@
   <title>Better Weather</title>
 </head>
 <body>
-  <div class="search-box">
-    <form>
-      <input type="text" name="location" id="location" autocomplete="off">
-      <i id="search" class="fa-solid fa-magnifying-glass"></i>
-      <p id="search-error" class="error hidden">test test test</p>
-    </form>
-  </div>
-  <div class="details">
-    <div class="title">
-      <div class="weather">
-        <p id="weather">weather</p>
-        <img id="weather-icon" src="" alt="weather icon">
-      </div>
-      <p id="name">name</p>
+  <div class="container">
+    <div class="search-box">
+      <form>
+        <input type="text" name="location" id="location" autocomplete="off">
+        <i id="search" class="fa-solid fa-magnifying-glass"></i>
+        <p id="search-error" class="error hidden"></p>
+      </form>
     </div>
-      <div class="temp">
-        <p id="temp">Temp</p>
-        <p id="minMaxTemp">minMaxTemp</p>
+    <div class="details">
+      <div class="title">
+        <div class="weather">
+          <p id="weather">weather</p>
+          <img id="weather-icon" src="" alt="weather icon">
+        </div>
+        <p id="name">name</p>
       </div>
-      <div class="local-times">
-        <p id="localTime">localTime</p>
-        <p id="sunrise">sunrise</p>
-        <p id="sunset">sunset</p>
-      </div>
+        <div class="temp">
+          <p id="temp">Temp</p>
+          <p id="minMaxTemp">minMaxTemp</p>
+        </div>
+        <div class="local-times">
+          <p id="localTime">localTime</p>
+          <p id="sunrise">sunrise</p>
+          <p id="sunset">sunset</p>
+        </div>
     
-      <div class="other">
-        <p id="visibility">visibility</p>
-        <p id="clouds">clouds</p>
-        <p id="humidity">humidity</p>
-      </div>
-      
-      <div class="rain-snow">
-        <p id="windSpeed">windSpeed</p>
-        <p id="rain">rain</p>
-        <p id="snow">snow</p>
-      </div>
+        <div class="other">
+          <p id="visibility">visibility</p>
+          <p id="clouds">clouds</p>
+          <p id="humidity">humidity</p>
+        </div>
+    
+        <div class="rain-snow">
+          <p id="windSpeed">windSpeed</p>
+          <p id="rain">rain</p>
+          <p id="snow">snow</p>
+        </div>
+        <button id="changeUnits">Change °C / °F</button>
+    </div>
   </div>
-  <button id="changeUnits">Change °C / °F</button>
 </body>
 </html>
