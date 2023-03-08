@@ -4,6 +4,7 @@ export default async function getData(location, units) {
     mode: 'cors'
   })
   const data = await response.json();
+  console.log(data)
   return processData(data, units)
 }
 
@@ -29,7 +30,8 @@ function processData(data, units) {
   const localTime = convertToLocalTime(data.timezone)
   const sunrise = convertToLocalTime(data.timezone, data.sys.sunrise)
   const sunset = convertToLocalTime(data.timezone, data.sys.sunset)
-
+  const weatherIconLink = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
+  
   let visibility = `${data.visibility}(KM)`
   if(data.visibility === 10000) visibility = 'excellent'
 
@@ -46,7 +48,7 @@ function processData(data, units) {
   if(data.sys.sunrise < data.dt && data.dt < data.sys.sunset) theme = 'light'
 
 
-  return {theme, name, country, localTime, sunrise, sunset, weather, temp, humidity, minTemp, maxTemp, visibility, windSpeed, clouds, rain, snow}
+  return {theme, name, country, localTime, sunrise, sunset, weather, temp, humidity, minTemp, maxTemp, visibility, windSpeed, clouds, rain, snow, weatherIconLink}
 }
 
 function convertToLocalTime(timezone, time) {

@@ -3,6 +3,7 @@ import display from "./scripts/domFunctions";
 import './styles/style.css';
 import './styles/main.css';
 import './styles/light-theme.css';
+import './styles/dark-theme.css';
 
 const form = document.querySelector('form')
 const givenLocation = document.getElementById('location')

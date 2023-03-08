@@ -13,6 +13,7 @@ export default function display(dataObject) {
   const rain = document.getElementById('rain')
   const snow = document.getElementById('snow')
   const body = document.querySelector('body')
+  const weatherIcon = document.getElementById('weather-icon')
 
   body.id = dataObject.theme
   name.textContent = `${dataObject.name} (${dataObject.country})`
@@ -28,5 +29,6 @@ export default function display(dataObject) {
   clouds.textContent = `Clouds: ${dataObject.clouds}`
   rain.textContent = `Rain: ${dataObject.rain}`
   snow.textContent = `Snow: ${dataObject.snow}`
+  weatherIcon.src = dataObject.weatherIconLink
 }
 

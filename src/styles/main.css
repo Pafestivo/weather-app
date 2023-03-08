@@ -48,6 +48,11 @@ body {
   row-gap: 5px;
 }
 
+.weather {
+  display: flex;
+  padding-left: 40px;
+}
+
 #weather {
   font-size: 40px;
   font-weight: bold;
