@@ -22,7 +22,7 @@ async function getAdnDisplayData(location, units) {
   }
 }
 
-getAdnDisplayData('ukraine', units)
+getAdnDisplayData('Tel Aviv', units)
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
