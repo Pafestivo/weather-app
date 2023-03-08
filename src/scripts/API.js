@@ -45,10 +45,10 @@ function processData(data, units) {
   if(data.sys.country) country = data.sys.country
 
   let rain = '-'
-  if(data.rain) rain = data.rain['1h'];
+  if(data.rain) rain = `${data.rain['1h']} MM`;
 
   let snow = '-'
-  if(data.snow) snow = data.snow['1h'];
+  if(data.snow) snow = `${data.snow['1h']} MM`;
 
 
   let theme = 'dark'
