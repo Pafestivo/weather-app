@@ -5,25 +5,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="main.js" defer></script>
+  <script src="https://kit.fontawesome.com/e2364af56b.js" crossorigin="anonymous"></script>
   <title>Better Weather</title>
 </head>
 <body>
-  <input type="text" name="location" id="location">
-  <button id="search">Search</button>
-  <button id="changeUnits">Change Units</button>
-  <p id="name">name</p>
-  <p id="localTime">localTime</p>
-  <p id="sunrise">sunrise</p>
-  <p id="sunset">sunset</p>
-  <p id="weather">weather</p>
-  <p id="temp">temp</p>
-  <p id="minTemp">minTemp</p>
-  <p id="maxTemp">maxTemp</p>
-  <p id="humidity">humidity</p>
-  <p id="visibility">visibility</p>
-  <p id="windSpeed">windSpeed</p>
-  <p id="clouds">clouds</p>
-  <p id="rain">rain</p>
-  <p id="snow">snow</p>
+  <div class="search-box">
+    <form>
+      <input type="text" name="location" id="location" autocomplete="off">
+      <i id="search" class="fa-solid fa-magnifying-glass"></i>
+    </form>
+  </div>
+  <div class="details">
+    <div class="title">
+      <p id="weather">weather</p>
+      <p id="name">name</p>
+    </div>
+      <div class="temp">
+        <p id="temp">Temp</p>
+        <p id="minMaxTemp">minMaxTemp</p>
+      </div>
+      <div class="local-times">
+        <p id="localTime">localTime</p>
+        <p id="sunrise">sunrise</p>
+        <p id="sunset">sunset</p>
+      </div>
+    
+      <div class="other">
+        <p id="visibility">visibility</p>
+        <p id="clouds">clouds</p>
+        <p id="humidity">humidity</p>
+      </div>
+      
+      <div class="rain-snow">
+        <p id="windSpeed">windSpeed</p>
+        <p id="rain">rain</p>
+        <p id="snow">snow</p>
+      </div>
+  </div>
+  <button id="changeUnits">Change °C / °F</button>
 </body>
 </html>
