@@ -1,29 +1,39 @@
-export default async function getData(location) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&APPID=80b5e34940d5d647c671753b685314a7`;
+export default async function getData(location, units) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&APPID=80b5e34940d5d647c671753b685314a7`;
   const response = await fetch(url, {
     mode: 'cors'
   })
   const data = await response.json();
   try {
     console.log(data)
-    console.log(processData(data))
-    display(processData(data))
+    if(response.url.includes('metric')) display(processData(data, 'metric'))
+    else display(processData(data, 'imperial'))
   } catch {
     handleError(data)
   }
 }
 
-function processData(data) {
+function processData(data, units) {
+  let degree
+  let speed
+  if(units === 'metric') {
+    degree = 'C'
+    speed = '(M/S)'
+  } else {
+    degree = 'F'
+    speed = '(M/H)'
+  }
   const name = data.name
-  const country = data.sys.country
+  
   const weather = data.weather[0].description
-  const temp = `${data.main.temp}C`
+  const temp = `${data.main.temp}${degree}`
   const humidity = `${data.main.humidity}%`
-  const minTemp = `${data.main.temp_min}C`
-  const maxTemp = `${data.main.temp_max}C`
-  const windSpeed = `${data.wind.speed}(M/S)`
+  const minTemp = `${data.main.temp_min}${degree}`
+  const maxTemp = `${data.main.temp_max}${degree}`
+  const windSpeed = `${data.wind.speed}${speed}`
   const clouds = `${data.clouds.all}%`
   let visibility = `${data.visibility}(K/M)`
+  let country = '-'
   let rain = '-'
   let snow = '-'
 
@@ -32,8 +42,10 @@ function processData(data) {
   const sunset = convertToLocalTime(data.timezone, data.sys.sunset)
 
   if(data.visibility === 10000) {
-    visibility = 'good'
+    visibility = 'excellent'
   }
+
+  if(data.sys.country) country = data.sys.country
 
   if(data.snow) snow = data.snow['1h'];
   if(data.rain) rain = data.rain['1h'];
@@ -74,8 +86,8 @@ function display(dataObject) {
 
 function convertToLocalTime(timezone, time) {
   let localTime
-  if(time) localTime = new Date(time * 1000).getTime()
-  else localTime = new Date().getTime()
+  if(time) localTime = new Date(time * 1000).getTime() // if given time convert it to local time
+  else localTime = new Date().getTime() // if no time given, get the current local time
 
   const localOffset = new Date().getTimezoneOffset() * 60000
   const currentUtcTime = localOffset + localTime
