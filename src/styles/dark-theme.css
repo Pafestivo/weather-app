@@ -6,3 +6,7 @@ body#dark .search-box input[type='text'] {
   color: white;
   border-bottom: 2px solid white;
 }
+
+body#dark .details {
+  background-color: rgba(0, 0, 0, 0.4);
+}
