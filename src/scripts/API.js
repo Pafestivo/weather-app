@@ -27,17 +27,24 @@ function processData(data) {
   let rain = '-'
   let snow = '-'
 
+  const localTime = convertToLocalTime(data.timezone)
+  const sunrise = convertToLocalTime(data.timezone, data.sys.sunrise)
+  const sunset = convertToLocalTime(data.timezone, data.sys.sunset)
+
   if(data.visibility === 10000) {
     visibility = 'good'
   }
 
   if(data.snow) snow = data.snow['1h'];
   if(data.rain) rain = data.rain['1h'];
-  return {name, country, weather, temp, humidity, minTemp, maxTemp, visibility, windSpeed, clouds, rain, snow}
+  return {name, country, localTime, sunrise, sunset, weather, temp, humidity, minTemp, maxTemp, visibility, windSpeed, clouds, rain, snow}
 }
 
 function display(dataObject) {
   const name = document.getElementById('name')
+  const localTime = document.getElementById('localTime')
+  const sunrise = document.getElementById('sunrise')
+  const sunset = document.getElementById('sunset')
   const weather = document.getElementById('weather')
   const temp = document.getElementById('temp')
   const humidity = document.getElementById('humidity')
@@ -50,6 +57,9 @@ function display(dataObject) {
   const snow = document.getElementById('snow')
 
   name.textContent = `City Name: ${dataObject.name} (${dataObject.country})`
+  localTime.textContent = `Local Time: ${dataObject.localTime}`
+  sunrise.textContent = `Sunrise: ${dataObject.sunrise}`
+  sunset.textContent = `Sunset: ${dataObject.sunset}`
   weather.textContent = `Weather: ${dataObject.weather}`
   temp.textContent = `Temperature: ${dataObject.temp}`
   maxTemp.textContent = `Highest: ${dataObject.maxTemp}`
@@ -60,6 +70,21 @@ function display(dataObject) {
   clouds.textContent = `Clouds: ${dataObject.clouds}`
   rain.textContent = `Rain: ${dataObject.rain}`
   snow.textContent = `Snow: ${dataObject.snow}`
+}
+
+function convertToLocalTime(timezone, time) {
+  let localTime
+  if(time) localTime = new Date(time * 1000).getTime()
+  else localTime = new Date().getTime()
+
+  const localOffset = new Date().getTimezoneOffset() * 60000
+  const currentUtcTime = localOffset + localTime
+  const cityOffset = currentUtcTime + 1000 * timezone
+
+  const cityTime = new Date(cityOffset)
+  const hours = `0${cityTime.getHours()}`
+  const minutes = `0${cityTime.getMinutes()}`
+  return `${hours.slice(-2)}:${minutes.slice(-2)}`
 }
 
 function handleError(data) {
