@@ -25,7 +25,8 @@
         "grouped-accessor-pairs": "off",
         "no-param-reassign": "off",
         "no-alert": "off",
-        "prefer-destructuring": "off"
+        "prefer-destructuring": "off",
+        "no-shadow": "off"
     }
   }
   

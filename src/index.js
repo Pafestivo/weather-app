@@ -1,30 +1,39 @@
 import getData from "./scripts/API";
+import display from "./scripts/domFunctions";
 import './styles/style.css';
 import './styles/main.css';
 import './styles/light-theme.css';
-
-
-let units = 'metric'
-getData('ukraine', units);
 
 const form = document.querySelector('form')
 const givenLocation = document.getElementById('location')
 const searchLocation = document.getElementById('search')
 const changeUnits = document.getElementById('changeUnits')
 const cityName = document.getElementById('name')
+let units = 'metric'
+
+async function getAdnDisplayData(location, units) {
+  try {
+    const data = await getData(location,units)
+    display(data)
+  } catch(error) {
+    console.error(error)
+  }
+}
+
+getAdnDisplayData('ukraine', units)
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-  getData(givenLocation.value, units)
+  getAdnDisplayData(givenLocation.value, units)
 })
 
 searchLocation.addEventListener('click', () => {
-  getData(givenLocation.value, units)
+  getAdnDisplayData(givenLocation.value, units)
 })
 
 changeUnits.addEventListener('click', () => {
-  if(units === 'metric') units = 'imperial' 
-  else units = 'metric'
+  units = units === 'metric' ? 'imperial' : 'metric'
   const lastSearch = cityName.textContent.split(' (')[0].replace('City Name: ', '')
-  getData(lastSearch, units)
+  getAdnDisplayData(lastSearch, units)
+  
 })
