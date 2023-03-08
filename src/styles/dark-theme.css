@@ -1,4 +1,8 @@
 body#dark {
   background-image: url(../images/night-sky.jpg);
+}
 
+body#dark .search-box input[type='text'] {
+  color: white;
+  border-bottom: 2px solid white;
 }

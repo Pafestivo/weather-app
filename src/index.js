@@ -1,9 +1,10 @@
-import getData from "./scripts/API";
-import display from "./scripts/domFunctions";
-import './styles/style.css';
-import './styles/main.css';
-import './styles/light-theme.css';
-import './styles/dark-theme.css';
+import getData from "./scripts/API"
+import display from "./scripts/domFunctions"
+import './styles/style.css'
+import './styles/main.css'
+import './styles/light-theme.css'
+import './styles/dark-theme.css'
+import './styles/mediaQueries.css'
 
 const form = document.querySelector('form')
 const givenLocation = document.getElementById('location')
